@@ -6,5 +6,18 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="D:/Download/mysql-connector-j-8.3.0/mysql-connector-j-8.3.0.jar"/>
+	<classpathentry kind="lib" path="D:/Download/dnsjava-3.5.2.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="D:/Download/slf4j-simple-2.0.9.jar"/>
+	<classpathentry kind="lib" path="D:/Download/slf4j-api-2.0.9.jar"/>
+	<classpathentry kind="lib" path="D:/Download/commons-net-3.11.1/commons-net-3.11.1.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

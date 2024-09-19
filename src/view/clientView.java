@@ -8,8 +8,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.naming.spi.Resolver;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.lang.invoke.MethodHandles.Lookup;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -22,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.MatteBorder;
 
-public class clientView extends JFrame {
+public class ClientView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -41,7 +43,7 @@ public class clientView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					clientView frame = new clientView();
+					ClientView frame = new ClientView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +55,7 @@ public class clientView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public clientView() {
+	public ClientView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 966, 623);
 		contentPane = new JPanel();
@@ -167,7 +169,6 @@ public class clientView extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 try {
-	                    // Lấy giá trị từ JTextField
 	                    String message = textField.getText();
 
 	                    // Tạo DatagramSocket để gửi gói tin qua UDP
@@ -175,10 +176,11 @@ public class clientView extends JFrame {
 	                    InetAddress serverAddress = InetAddress.getByName("localhost");
 	                    byte[] sendData = message.getBytes();
 	                    byte[] receiveData = new byte[1024];
+	                    
 
-	                    // Tạo DatagramPacket để gửi dữ liệu tới server
 	                    DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, serverAddress, 1112);
 	                    clientSocket.send(sendPacket);
+	                    
 	                    
 	                    DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
 	                    clientSocket.receive(receivePacket);
@@ -190,8 +192,6 @@ public class clientView extends JFrame {
 	                    textField_1.setText(str);
 
 	                    // Đóng kết nối sau khi xử lý
-	                    clientSocket.close();
-
 	                    clientSocket.close();
 	               
 	                    
