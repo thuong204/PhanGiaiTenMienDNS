@@ -48,49 +48,45 @@ public class LoginView extends JFrame {
 	 */
 	public LoginView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 831, 547);
+		setBounds(100, 100, 560, 413);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 255, 255));
+		contentPane.setBackground(new Color(245, 245, 220));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(128, 128, 128));
-		panel.setBounds(0, 26, 817, 495);
-		contentPane.add(panel);
-		panel.setLayout(null);
-		
-		textFieldEmail = new PlaceholderTextField("Email");
-		textFieldEmail.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		textFieldEmail.setBackground(new Color(255, 255, 255));
-		textFieldEmail.setBounds(265, 198, 323, 35);
-		panel.add(textFieldEmail);
-		textFieldEmail.setColumns(10);
-		
 		textFieldPassword = new PlaceholderTextField("Password");
+		textFieldPassword.setBounds(110, 199, 323, 35);
+		contentPane.add(textFieldPassword);
 		textFieldPassword.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textFieldPassword.setBackground(new Color(255, 255, 255));
 		textFieldPassword.setColumns(10);
-		textFieldPassword.setBounds(265, 260, 323, 35);
-		panel.add(textFieldPassword);
+		
+		textFieldEmail = new PlaceholderTextField("Email");
+		textFieldEmail.setBounds(110, 137, 323, 35);
+		contentPane.add(textFieldEmail);
+		textFieldEmail.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textFieldEmail.setBackground(new Color(255, 255, 255));
+		textFieldEmail.setColumns(10);
 		
 		JLabel lblEmail = new JLabel("");
+		lblEmail.setBounds(65, 137, 44, 35);
+		contentPane.add(lblEmail);
 		lblEmail.setIcon(new ImageIcon("D:\\Download\\user-interface.png"));
 		lblEmail.setForeground(new Color(255, 255, 255));
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblEmail.setBounds(220, 198, 44, 35);
-		panel.add(lblEmail);
 		
 		JLabel lblPassword = new JLabel("");
+		lblPassword.setBounds(65, 193, 53, 46);
+		contentPane.add(lblPassword);
 		lblPassword.setIcon(new ImageIcon("D:\\Download\\lock.png"));
 		lblPassword.setForeground(new Color(255, 255, 255));
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblPassword.setBounds(220, 254, 53, 46);
-		panel.add(lblPassword);
 		
-		JButton btnLogin = new JButton("Login");
+		JButton btnLogin = new JButton("LOGIN");
+		btnLogin.setBounds(300, 290, 133, 35);
+		contentPane.add(btnLogin);
 		btnLogin.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        String email = textFieldEmail.getText();
@@ -116,35 +112,37 @@ public class LoginView extends JFrame {
 		        }
 		    }
 		});
-
-		btnLogin.setForeground(new Color(255, 255, 255));
-		btnLogin.setBackground(new Color(0, 128, 255));
-		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnLogin.setBounds(440, 381, 148, 35);
-		panel.add(btnLogin);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(0, 0, 64));
-		panel_1.setBounds(0, 0, 817, 92);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JLabel lblLogin = new JLabel("LOGIN");
-		lblLogin.setBounds(355, 27, 110, 40);
-		panel_1.add(lblLogin);
-		lblLogin.setForeground(new Color(255, 255, 255));
-		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 33));
-		
-		JButton btnRegister = new JButton("Register");
-		btnRegister.setForeground(new Color(0, 0, 0));
-		btnRegister.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnRegister.setBackground(new Color(255, 128, 64));
-		btnRegister.setBounds(264, 381, 148, 35);
-		panel.add(btnRegister);
-		
-		JLabel lblForgotPassword = new JLabel("Forgot Password");
-		lblForgotPassword.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblForgotPassword.setBounds(450, 305, 148, 25);
-		panel.add(lblForgotPassword);
+				btnLogin.setForeground(new Color(255, 255, 255));
+				btnLogin.setBackground(new Color(0, 255, 0));
+				btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 20));
+				
+				JLabel lblForgotPassword = new JLabel("Forgot Password");
+				lblForgotPassword.setBounds(314, 244, 148, 25);
+				contentPane.add(lblForgotPassword);
+				lblForgotPassword.setFont(new Font("Tahoma", Font.PLAIN, 16));
+				
+				JButton btnRegister = new JButton("SIGN UP");
+				btnRegister.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+				btnRegister.setBounds(110, 290, 118, 35);
+				contentPane.add(btnRegister);
+				btnRegister.setForeground(new Color(0, 0, 0));
+				btnRegister.setFont(new Font("Tahoma", Font.PLAIN, 20));
+				btnRegister.setBackground(new Color(255, 0, 0));
+				
+				JPanel panel_1 = new JPanel();
+				panel_1.setBounds(-12, 10, 622, 78);
+				contentPane.add(panel_1);
+				panel_1.setBackground(new Color(47, 79, 79));
+				panel_1.setLayout(null);
+				
+				JLabel lblLogin = new JLabel("LOGIN");
+				lblLogin.setBounds(228, 15, 110, 40);
+				panel_1.add(lblLogin);
+				lblLogin.setForeground(new Color(255, 255, 255));
+				lblLogin.setFont(new Font("Tahoma", Font.BOLD, 33));
 	}
 }
