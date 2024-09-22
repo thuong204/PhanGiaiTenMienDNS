@@ -13,6 +13,8 @@ import org.xbill.DNS.SimpleResolver;
 import org.xbill.DNS.Type;
 
 import Service.DNSService;
+import Service.DomainDao;
+import model.Domain;
 
 public class ServerController {
     
@@ -41,6 +43,7 @@ public class ServerController {
                     
                     //Khoi táo dịch vụ DNS
                     DNSService dnsService = new DNSService();
+                    
                     
                     
                     boolean isIP = dnsService.isValidIPAddress(input);
@@ -74,7 +77,15 @@ public class ServerController {
                         result.append(dnsService.domaintoRecordDNS(domainName, Type.NS, resolver)).append("\n");
                         result.append(dnsService.domaintoRecordDNS(domainName, Type.SOA, resolver)).append("\n");
                         result.append(dnsService.domaintoRecordDNS(domainName, Type.TXT, resolver)).append("\n");
+                        
                         ipAddress = result.toString();
+                        
+                        
+                          //Luu vao database
+                        Domain domain = new Domain(domainName,ipAddress);
+                      
+                        DomainDao domainDao = new DomainDao();
+                        domainDao.saveDomainImportant(domain);
 
                       
                 }

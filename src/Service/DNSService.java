@@ -25,15 +25,15 @@ public class DNSService {
             long queryTime = endTime - startTime;
 
             if (records == null || lookup.getResult() != Lookup.SUCCESSFUL) {
-                result.append("No records found for ").append(domain)
-                      .append(" with record type ").append(Type.string(recordType)).append("\n")
+                result.append("No records found for ").
+                      append(Type.string(recordType)).append("\n")
                       .append("Query time: ").append(queryTime).append(" ms\n");
                 return result.toString();
             }
             
 
-            result.append("Results for ").append(domain)
-                  .append(" with record type ").append(Type.string(recordType)).append(":\n");
+//            result.append("Results for ").append(domain)
+//                  .append(" with record type ").append(Type.string(recordType)).append(":\n");
             for (Record record : records) {
                 result.append(record).append("\n");
             }
@@ -136,10 +136,7 @@ public class DNSService {
                       .append("Query time: ").append(queryTime).append(" ms\n");
                 return result.toString();
             }
-            
-
-            result.append("Results for ").append(ip)
-                  .append(" with record type ").append(Type.string(recordType)).append(":\n");
+          
             for (Record record : records) {
                 result.append(record).append("\n");
             }

@@ -34,6 +34,8 @@ public class ClientView extends JFrame {
 	private final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 	private JTextArea textAreaIP;
 
+    
+
 	/**
 	 * Launch the application.
 	 */
@@ -41,8 +43,17 @@ public class ClientView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
+//					if(LoginView.emailGlobal !=null) {
+//						System.out.println(LoginView.emailGlobal+"dffhdhfhsdhf");
+//					
 					ClientView frame = new ClientView();
 					frame.setVisible(true);
+//					}else {
+//						LoginView lgView = new LoginView();
+//						lgView.setVisible(true);
+//					}
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -106,10 +117,10 @@ public class ClientView extends JFrame {
 		lblKtQu.setBounds(10, 0, 122, 30);
 		panel.add(lblKtQu);
 		
-		JButton btnNewButton_1 = new JButton("Save important Domain");
-		btnNewButton_1.setIcon(new ImageIcon("D:\\Download\\diskette (1).png"));
-		btnNewButton_1.setBounds(774, 20, 199, 30);
-		panel.add(btnNewButton_1);
+		JButton btnNewButton_saveDomain = new JButton("Save important Domain");
+		btnNewButton_saveDomain.setIcon(new ImageIcon("D:\\Download\\diskette (1).png"));
+		btnNewButton_saveDomain.setBounds(774, 20, 199, 30);
+		panel.add(btnNewButton_saveDomain);
 		
 		JButton btnNewButton_1_1 = new JButton("Truy cập website");
 		btnNewButton_1_1.setBackground(new Color(255, 0, 128));
@@ -124,8 +135,9 @@ public class ClientView extends JFrame {
 		textAreaIP = new JTextArea();
 		textAreaIP.setEditable(false);
 		scrollPane.setViewportView(textAreaIP);
-		btnNewButton_1.addActionListener(new ActionListener() {
+		btnNewButton_saveDomain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		btnNewButton.addActionListener(new ActionListener() {
@@ -135,13 +147,16 @@ public class ClientView extends JFrame {
 
 	                    // Tạo DatagramSocket để gửi gói tin qua UDP
 	                    DatagramSocket clientSocket = new DatagramSocket();
-	                    InetAddress serverAddress = InetAddress.getByName("localhost");
+	                    InetAddress serverAddress = InetAddress.getByName("192.168.1.15");
 	                    byte[] sendData = message.getBytes();
 	                    byte[] receiveData = new byte[1024];
+	                    
+	                    byte[] buffer = message.getBytes();
 	                    
 
 	                    DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, serverAddress, 1111);
 	                    clientSocket.send(sendPacket);
+	                    
 	                    
 	                    
 	                    DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);

@@ -26,6 +26,7 @@ public class LoginView extends JFrame {
 	private JPanel contentPane;
 	private JTextField textFieldEmail;
 	private JTextField textFieldPassword;
+	public static String emailGlobal;
 
 	/**
 	 * Launch the application.
@@ -101,6 +102,8 @@ public class LoginView extends JFrame {
 		                MessageDialogHelper.showErrorDialog(null, "Tên đăng nhập hoặc mật khẩu sai", "Lỗi");
 		            } else {
 		                MessageDialogHelper.showMessageDialog(null, "Đăng nhập thành công", "Thành công");
+		                emailGlobal = email;
+		                
 		                
 		                LoginView.this.dispose();
 		                ClientView clientView = new ClientView();
