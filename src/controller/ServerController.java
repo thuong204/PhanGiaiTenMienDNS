@@ -14,12 +14,14 @@ import org.xbill.DNS.Type;
 
 import Service.DNSService;
 import Service.DomainDao;
+import helpers.GlobalVariable;
 import model.Domain;
+import view.LoginView;
 
 public class ServerController {
     
     public static class serverView {
-        private static final int PORT = 1111;
+        private static final int PORT = 1112;
 
         public static void main(String[] args) {
         	// Khởi tạo serverSocket UDP
@@ -34,6 +36,11 @@ public class ServerController {
                     DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
                     serverSocket.receive(receivePacket); // Receive data from the client
                     String input = new String(receivePacket.getData(), 0, receivePacket.getLength());
+                    
+                    
+                    String[] parts = input.split(";");
+                    String email = parts[0];
+                    String message = parts[1];
                     String ipAddress = "Domain not found";  // Default value
                     
                    
@@ -44,11 +51,13 @@ public class ServerController {
                     //Khoi táo dịch vụ DNS
                     DNSService dnsService = new DNSService();
                     
+                    System.out.println(GlobalVariable.getGlobalValue());
                     
                     
-                    boolean isIP = dnsService.isValidIPAddress(input);
+                    
+                    boolean isIP = dnsService.isValidIPAddress(message);
                     if (isIP) {
-                    	String IP = input;
+                    	String IP = message;
                     	
                     	 result.append("Results for ").append(IP).append(":\n\n");
                     	 result.append(dnsService.iPv4ToDomain(IP, resolver));
@@ -64,7 +73,7 @@ public class ServerController {
                     	ipAddress = result.toString();
                     	
                     } else {
-                        String domainName = input;
+                        String domainName = message;
                         //Server DNS phân giải
                        
                         result = new StringBuilder();
@@ -85,7 +94,7 @@ public class ServerController {
                         Domain domain = new Domain(domainName,ipAddress);
                       
                         DomainDao domainDao = new DomainDao();
-                        domainDao.saveDomainImportant(domain);
+                        domainDao.saveDomainImportant(domain,email);
 
                       
                 }

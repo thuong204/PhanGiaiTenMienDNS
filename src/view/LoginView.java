@@ -2,11 +2,13 @@ package view;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.LoginController;
+import helpers.GlobalVariable;
 import helpers.MessageDialogHelper;
 import helpers.PlaceholderTextField;
 import model.User;
@@ -26,7 +28,7 @@ public class LoginView extends JFrame {
 	private JPanel contentPane;
 	private JTextField textFieldEmail;
 	private JTextField textFieldPassword;
-	public static String emailGlobal;
+	public static String emailGlobal ;
 
 	/**
 	 * Launch the application.
@@ -102,7 +104,12 @@ public class LoginView extends JFrame {
 		                MessageDialogHelper.showErrorDialog(null, "Tên đăng nhập hoặc mật khẩu sai", "Lỗi");
 		            } else {
 		                MessageDialogHelper.showMessageDialog(null, "Đăng nhập thành công", "Thành công");
-		                emailGlobal = email;
+		                
+		                GlobalVariable.setGlobalValue(email);
+		                
+		                System.out.println(GlobalVariable.getGlobalValue());
+		                
+		            
 		                
 		                
 		                LoginView.this.dispose();
