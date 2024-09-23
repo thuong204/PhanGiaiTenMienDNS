@@ -21,7 +21,7 @@ import view.LoginView;
 public class ServerController {
     
     public static class serverView {
-        private static final int PORT = 1112;
+        private static final int PORT = 1113;
 
         public static void main(String[] args) {
         	// Khởi tạo serverSocket UDP

@@ -87,144 +87,15 @@ public class ClientView extends JFrame {
 	 */
 	public ClientView() throws Exception {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1158, 647);
+		setBounds(100, 100, 1217, 731);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		tabbedPane.setForeground(new Color(0, 0, 0));
-		tabbedPane.setBounds(0, 10, 1144, 590);
+		tabbedPane.setBounds(0, 10, 1188, 674);
 		contentPane.add(tabbedPane);
-		
-		JPanel panel_trangchu = new JPanel();
-		tabbedPane.addTab("Trang chủ", null, panel_trangchu, "");
-		panel_trangchu.setLayout(null);
-		
-		JLabel lblDomainl = new JLabel("Input Domain or IP of Domain");
-		lblDomainl.setForeground(new Color(0, 128, 0));
-		lblDomainl.setBounds(55, 105, 237, 30);
-		panel_trangchu.add(lblDomainl);
-		lblDomainl.setFont(new Font("Tahoma", Font.BOLD, 15));
-		
-		JLabel lblDomainTitlle = new JLabel("Domain Name Resolution System");
-		lblDomainTitlle.setBounds(327, 29, 646, 49);
-		panel_trangchu.add(lblDomainTitlle);
-		lblDomainTitlle.setForeground(new Color(255, 0, 0));
-		lblDomainTitlle.setFont(new Font("Tahoma", Font.BOLD, 30));
-		
-		textFieldIP = new JTextField();
-		textFieldIP.setBounds(302, 106, 555, 30);
-		panel_trangchu.add(textFieldIP);
-		textFieldIP.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textFieldIP.setColumns(10);
-		
-		JButton btnResolute = new JButton("Resolute");
-		btnResolute.setForeground(new Color(255, 255, 255));
-		btnResolute.setBackground(new Color(0, 128, 0));
-		btnResolute.setBounds(950, 106, 131, 30);
-		panel_trangchu.add(btnResolute);
-		btnResolute.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(192, 192, 192));
-		panel.setBounds(55, 175, 1026, 378);
-		panel_trangchu.add(panel);
-		panel.setLayout(null);
-		
-		JLabel lblKtQu = new JLabel("Result");
-		lblKtQu.setForeground(new Color(255, 0, 0));
-		lblKtQu.setFont(new Font("Tahoma", Font.BOLD, 25));
-		lblKtQu.setBounds(10, 0, 122, 30);
-		panel.add(lblKtQu);
-		
-		JButton btnNewButton_saveDomain = new JButton("Save important Domain");
-		btnNewButton_saveDomain.setIcon(new ImageIcon("D:\\Download\\diskette (1).png"));
-		btnNewButton_saveDomain.setBounds(774, 20, 199, 30);
-		panel.add(btnNewButton_saveDomain);
-		
-		JButton btnLink = new JButton("Truy cập website");
-		btnLink.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				 try {
-	                    // Tạo URL từ địa chỉ IP
-					 	String ipAddress = textFieldIP.getText();
-	                    String website = "http://" + ipAddress;
-	                    
-	                    if (Desktop.isDesktopSupported()) {
-	                        Desktop desktop = Desktop.getDesktop();
-	                        desktop.browse(new URI(website));
-	                    } else {
-	                        JOptionPane.showMessageDialog(null, "Desktop không được hỗ trợ", "Lỗi", JOptionPane.ERROR_MESSAGE);
-	                    }
-	                } catch (Exception ex) {
-	                    ex.printStackTrace();
-	                }
-			}
-		});
-		btnLink.setBackground(new Color(255, 0, 128));
-		btnLink.setForeground(new Color(255, 255, 255));
-		btnLink.setBounds(56, 338, 156, 30);
-		panel.add(btnLink);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(56, 67, 915, 261);
-		panel.add(scrollPane);
-		
-		textAreaIP = new JTextArea();
-		textAreaIP.setEditable(false);
-		scrollPane.setViewportView(textAreaIP);
-		btnNewButton_saveDomain.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		btnResolute.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				 try {
-	                    String message = textFieldIP.getText();
-	                    
-	                    String email = GlobalVariable.getGlobalValue();
-	                    
-	                    String dataToSend = email + ";" + message;
-
-	                    // Tạo DatagramSocket để gửi gói tin qua UDP
-	                    DatagramSocket clientSocket = new DatagramSocket();
-	                    InetAddress serverAddress = InetAddress.getByName("192.168.1.15");
-	                    
-	           
-	                   
-	                    byte[] sendData = dataToSend.getBytes();
-	                    byte[] receiveData = new byte[1024];
-	                    
-	                    byte[] buffer = message.getBytes();
-	                    
-
-	                    DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, serverAddress, 1112);
-	                    clientSocket.send(sendPacket);
-	                    
-	                                
-	                    DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-	                    clientSocket.receive(receivePacket);
-
-	                    // Chuyển đổi dữ liệu nhận được thành chuỗi, chỉ lấy phần dữ liệu thực tế
-	                    String str = new String(receivePacket.getData(), 0, receivePacket.getLength());
-
-	                    // Đặt giá trị vào JTextField
-	                    
-	                    textAreaIP.setText(str);
-	                  
-	                   
-	                    clientSocket.close();
-	               
-	                    
-	                } catch (Exception ex) {
-	                    ex.printStackTrace();
-	                }
-				
-				
-			}
-		});
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Lịch sử phân giải", null, panel_1, null);
@@ -320,7 +191,136 @@ public class ClientView extends JFrame {
 		JPanel panel_taikhoan = new JPanel();
 		panel_taikhoan.setForeground(new Color(0, 0, 0));
 		tabbedPane.addTab("Tài khoản", null, panel_taikhoan, null);
-		tabbedPane.setForegroundAt(3, new Color(0, 0, 0));
+		tabbedPane.setForegroundAt(2, new Color(0, 0, 0));
+		
+		JPanel panel_trangchu = new JPanel();
+		tabbedPane.addTab("Trang chủ", null, panel_trangchu, "");
+		panel_trangchu.setLayout(null);
+		
+		JLabel lblDomainl = new JLabel("Input Domain or IP of Domain");
+		lblDomainl.setForeground(new Color(0, 128, 0));
+		lblDomainl.setBounds(55, 105, 237, 30);
+		panel_trangchu.add(lblDomainl);
+		lblDomainl.setFont(new Font("Tahoma", Font.BOLD, 15));
+		
+		JLabel lblDomainTitlle = new JLabel("Domain Name Resolution System");
+		lblDomainTitlle.setBounds(409, 35, 646, 49);
+		panel_trangchu.add(lblDomainTitlle);
+		lblDomainTitlle.setForeground(new Color(255, 0, 0));
+		lblDomainTitlle.setFont(new Font("Tahoma", Font.BOLD, 30));
+		
+		textFieldIP = new JTextField();
+		textFieldIP.setBounds(302, 106, 624, 30);
+		panel_trangchu.add(textFieldIP);
+		textFieldIP.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		textFieldIP.setColumns(10);
+		
+		JButton btnResolute = new JButton("Resolute");
+		btnResolute.setForeground(new Color(255, 255, 255));
+		btnResolute.setBackground(new Color(0, 128, 0));
+		btnResolute.setBounds(1006, 105, 131, 30);
+		panel_trangchu.add(btnResolute);
+		btnResolute.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(192, 192, 192));
+		panel.setBounds(24, 175, 1113, 462);
+		panel_trangchu.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblKtQu = new JLabel("Result");
+		lblKtQu.setForeground(new Color(255, 0, 0));
+		lblKtQu.setFont(new Font("Tahoma", Font.BOLD, 25));
+		lblKtQu.setBounds(10, 0, 122, 30);
+		panel.add(lblKtQu);
+		
+		JButton btnNewButton_saveDomain = new JButton("Save important Domain");
+		btnNewButton_saveDomain.setIcon(new ImageIcon("D:\\Download\\diskette (1).png"));
+		btnNewButton_saveDomain.setBounds(893, 21, 199, 30);
+		panel.add(btnNewButton_saveDomain);
+		
+		JButton btnLink = new JButton("Truy cập website");
+		btnLink.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 try {
+	                    // Tạo URL từ địa chỉ IP
+					 	String ipAddress = textFieldIP.getText();
+	                    String website = "http://" + ipAddress;
+	                    
+	                    if (Desktop.isDesktopSupported()) {
+	                        Desktop desktop = Desktop.getDesktop();
+	                        desktop.browse(new URI(website));
+	                    } else {
+	                        JOptionPane.showMessageDialog(null, "Desktop không được hỗ trợ", "Lỗi", JOptionPane.ERROR_MESSAGE);
+	                    }
+	                } catch (Exception ex) {
+	                    ex.printStackTrace();
+	                }
+			}
+		});
+		btnLink.setBackground(new Color(255, 0, 128));
+		btnLink.setForeground(new Color(255, 255, 255));
+		btnLink.setBounds(56, 422, 156, 30);
+		panel.add(btnLink);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(56, 67, 1036, 345);
+		panel.add(scrollPane);
+		
+		textAreaIP = new JTextArea();
+		textAreaIP.setEditable(false);
+		scrollPane.setViewportView(textAreaIP);
+		btnNewButton_saveDomain.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnResolute.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 try {
+	                    String message = textFieldIP.getText();
+	                    
+	                    String email = GlobalVariable.getGlobalValue();
+	                    
+	                    String dataToSend = email + ";" + message;
+
+	                    // Tạo DatagramSocket để gửi gói tin qua UDP
+	                    DatagramSocket clientSocket = new DatagramSocket();
+	                    InetAddress serverAddress = InetAddress.getByName("192.168.110.46");
+	                    
+	           
+	                   
+	                    byte[] sendData = dataToSend.getBytes();
+	                    byte[] receiveData = new byte[1024];
+	                    
+	                    byte[] buffer = message.getBytes();
+	                    
+
+	                    DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, serverAddress, 1113);
+	                    clientSocket.send(sendPacket);
+	                    
+	                                
+	                    DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
+	                    clientSocket.receive(receivePacket);
+
+	                    // Chuyển đổi dữ liệu nhận được thành chuỗi, chỉ lấy phần dữ liệu thực tế
+	                    String str = new String(receivePacket.getData(), 0, receivePacket.getLength());
+
+	                    // Đặt giá trị vào JTextField
+	                    
+	                    textAreaIP.setText(str);
+	                  
+	                   
+	                    clientSocket.close();
+	               
+	                    
+	                } catch (Exception ex) {
+	                    ex.printStackTrace();
+	                }
+				
+				
+			}
+		});
 	}
 	public void showTableHistory() {
 		for (SearchHistory search : listDomainHistory) {
