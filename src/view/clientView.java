@@ -97,102 +97,6 @@ public class ClientView extends JFrame {
 		tabbedPane.setBounds(0, 10, 1188, 674);
 		contentPane.add(tabbedPane);
 		
-		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("Lịch sử phân giải", null, panel_1, null);
-		panel_1.setLayout(null);
-		
-		JLabel lblDomainNameResolution = new JLabel("Domain Name Resolution System History");
-		lblDomainNameResolution.setBounds(252, 26, 667, 37);
-		lblDomainNameResolution.setForeground(Color.RED);
-		lblDomainNameResolution.setFont(new Font("Tahoma", Font.BOLD, 30));
-		panel_1.add(lblDomainNameResolution);
-		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(39, 73, 1090, 480);
-		panel_1.add(scrollPane_1);
-		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"DomainName", "Record", "Date_Resolution"
-			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				true, false, true
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		table.getColumnModel().getColumn(0).setPreferredWidth(92);
-		table.getColumnModel().getColumn(1).setPreferredWidth(605);
-		table.getColumnModel().getColumn(1).setMinWidth(2);
-		table.getColumnModel().getColumn(1).setMaxWidth(2147483646);
-		table.getColumnModel().getColumn(2).setPreferredWidth(112);
-		table.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                int row = table.rowAtPoint(e.getPoint());
-                int col = table.columnAtPoint(e.getPoint());
-
-                if (col == 1) { // Cột "Domain Content"
-                    String cellContent = (String) table.getValueAt(row, col);
-                    if (cellContent != null && cellContent.length() > 20) {
-                        JOptionPane.showMessageDialog(
-                            table,
-                            cellContent,
-                            "Full Content",
-                            JOptionPane.INFORMATION_MESSAGE
-                        );
-                    }
-                }
-            }
-        });
-		
-
-		scrollPane_1.setViewportView(table);
-		
-		JButton btnNewButton = new JButton("Refresh");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ClientView frame2;
-				try {
-					ClientView.this.dispose();
-					
-					
-					frame2 = new ClientView();
-					frame2.setVisible(true);
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
-				
-			}
-		});
-		btnNewButton.setBounds(53, 26, 85, 21);
-		panel_1.add(btnNewButton);
-		table.getColumnModel().getColumn(1).setCellRenderer(new MultiLineCellRenderer());
-		table.getColumnModel().getColumn(1).setCellRenderer(new TruncatedCellRenderer(20));
-
-		
-		
-		listDomainHistory = new DomainDao().getListDomains(GlobalVariable.getGlobalValue());
-		modelHistory = (DefaultTableModel) table.getModel();
-		
-		
-		showTableHistory();
-		
-		JPanel panel_2 = new JPanel();
-		tabbedPane.addTab("Trang trợ giúp", null, panel_2, null);
-		
-		JPanel panel_taikhoan = new JPanel();
-		panel_taikhoan.setForeground(new Color(0, 0, 0));
-		tabbedPane.addTab("Tài khoản", null, panel_taikhoan, null);
-		tabbedPane.setForegroundAt(2, new Color(0, 0, 0));
-		
 		JPanel panel_trangchu = new JPanel();
 		tabbedPane.addTab("Trang chủ", null, panel_trangchu, "");
 		panel_trangchu.setLayout(null);
@@ -321,6 +225,102 @@ public class ClientView extends JFrame {
 				
 			}
 		});
+		
+		JPanel panel_1 = new JPanel();
+		tabbedPane.addTab("Lịch sử phân giải", null, panel_1, null);
+		panel_1.setLayout(null);
+		
+		JLabel lblDomainNameResolution = new JLabel("Domain Name Resolution System History");
+		lblDomainNameResolution.setBounds(252, 26, 667, 37);
+		lblDomainNameResolution.setForeground(Color.RED);
+		lblDomainNameResolution.setFont(new Font("Tahoma", Font.BOLD, 30));
+		panel_1.add(lblDomainNameResolution);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(39, 73, 1090, 480);
+		panel_1.add(scrollPane_1);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"DomainName", "Record", "Date_Resolution"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				true, false, true
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table.getColumnModel().getColumn(0).setPreferredWidth(92);
+		table.getColumnModel().getColumn(1).setPreferredWidth(605);
+		table.getColumnModel().getColumn(1).setMinWidth(2);
+		table.getColumnModel().getColumn(1).setMaxWidth(2147483646);
+		table.getColumnModel().getColumn(2).setPreferredWidth(112);
+		table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = table.rowAtPoint(e.getPoint());
+                int col = table.columnAtPoint(e.getPoint());
+
+                if (col == 1) { // Cột "Domain Content"
+                    String cellContent = (String) table.getValueAt(row, col);
+                    if (cellContent != null && cellContent.length() > 20) {
+                        JOptionPane.showMessageDialog(
+                            table,
+                            cellContent,
+                            "Full Content",
+                            JOptionPane.INFORMATION_MESSAGE
+                        );
+                    }
+                }
+            }
+        });
+		
+
+		scrollPane_1.setViewportView(table);
+		
+		JButton btnNewButton = new JButton("Refresh");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ClientView frame2;
+				try {
+					ClientView.this.dispose();
+					
+					
+					frame2 = new ClientView();
+					frame2.setVisible(true);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+			}
+		});
+		btnNewButton.setBounds(53, 26, 85, 21);
+		panel_1.add(btnNewButton);
+		table.getColumnModel().getColumn(1).setCellRenderer(new MultiLineCellRenderer());
+		table.getColumnModel().getColumn(1).setCellRenderer(new TruncatedCellRenderer(20));
+
+		
+		
+		listDomainHistory = new DomainDao().getListDomains(GlobalVariable.getGlobalValue());
+		modelHistory = (DefaultTableModel) table.getModel();
+		
+		
+		showTableHistory();
+		
+		JPanel panel_2 = new JPanel();
+		tabbedPane.addTab("Trang trợ giúp", null, panel_2, null);
+		
+		JPanel panel_taikhoan = new JPanel();
+		panel_taikhoan.setForeground(new Color(0, 0, 0));
+		tabbedPane.addTab("Tài khoản", null, panel_taikhoan, null);
+		tabbedPane.setForegroundAt(3, new Color(0, 0, 0));
 	}
 	public void showTableHistory() {
 		for (SearchHistory search : listDomainHistory) {

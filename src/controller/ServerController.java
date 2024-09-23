@@ -21,7 +21,7 @@ import view.LoginView;
 public class ServerController {
     
     public static class serverView {
-        private static final int PORT = 1113;
+        private static final int PORT = 1114;
 
         public static void main(String[] args) {
         	// Khởi tạo serverSocket UDP
@@ -73,6 +73,7 @@ public class ServerController {
                     	ipAddress = result.toString();
                     	
                     } else {
+                    	System.out.println("ok");
                         String domainName = message;
                         //Server DNS phân giải
                        
